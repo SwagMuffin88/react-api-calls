@@ -1,7 +1,7 @@
 import './App.css'
 import {useEffect, useState} from "react"
 import axios from 'axios'
-// import MovieCard from "./components/MovieCard"
+import Navbar from './components/Navbar'
 import MovieRow from './components/MovieRow'
 
 interface Movies {
@@ -14,13 +14,13 @@ interface Movies {
 function App() {
     const [movies, setMovies] = useState<Movies[]>([])
     const [loading, setLoading] = useState<boolean>(true)
-
+    const [title, setTitle] = useState("Populaarsed hetkel")
 
     // From YT tutorial: https://www.youtube.com/watch?v=PRUTl0ihzHg
     const apiKey = "a2006311928939b35613c28405038c87"
     const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular"
 
-    const fetchMovies = async () => {
+    const fetchPopularMovies = async () => {
         try {
             setLoading(true)
             const response = await axios.get(`${popularMoviesUrl}?api_key=${apiKey}`)
@@ -32,30 +32,43 @@ function App() {
         } finally {
             setLoading(false)
         }
-    };
+    }
+
+    const handleSearch = async (query: string) => {
+        if(!query) {
+            fetchPopularMovies()
+            return
+        }
+
+        try {
+            setLoading(true)
+            setTitle(`Otsingu tulemused: ${query}`)
+            const searchUrl = `https://api.themoviedb.org/3/search/movie`
+            const response = await axios.get(`${searchUrl}?api_key=${apiKey}&query=${query}`);
+            setMovies(response.data.results)
+        } catch (error: any) {
+            console.error("Otsingu viga: ", error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     useEffect(() => {
-        fetchMovies()
+        fetchPopularMovies()
     }, [])
 
     return (
-        <div className="app-container">
-            <header>
-                <img
-                    src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-                    alt="TMDB Logo"
-                    style={{width: '150px', marginBottom: '20px'}}
-                />
-            </header>
+        <div className="app-container p-0">
+            <Navbar onSearch={handleSearch} />
 
-            <main>
+            <main className="p-5 max-w-300 mx-auto">
                 {loading ? (
                     <div className="loading-container">
                         <div className="spinner"></div>
                         <p>Laadin filme...</p>
                     </div>
                 ) : (
-                <MovieRow title="Populaarsed hetkel" movies={movies}/>
+                <MovieRow title={title} movies={movies}/>
                 )}
             </main>
         </div>

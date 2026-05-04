@@ -1,4 +1,5 @@
-/* Põhistiilid */
+@import 'tailwindcss';
+
 body {
   margin: 0;
   background-color: #0d253f; /* TMDB tume sinine/must */
@@ -7,7 +8,6 @@ body {
 }
 
 .app-container {
-  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
