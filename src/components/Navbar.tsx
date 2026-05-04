@@ -42,8 +42,7 @@ const Navbar = () => {
                 </form>
 
                 <div className="nav-links">
-                    <span>Filmid</span>
-                    <span>TV Sarjad</span>
+                    <span>Minu lemmikud</span>
                 </div>
             </div>
         </nav>

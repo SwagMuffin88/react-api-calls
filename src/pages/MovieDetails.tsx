@@ -75,7 +75,6 @@ const MovieDetail = () => {
                         </button>
 
                         <div className="flex flex-col md:flex-row gap-10">
-                            {/* Poster */}
                             <img
                                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                 alt={movie.title}
