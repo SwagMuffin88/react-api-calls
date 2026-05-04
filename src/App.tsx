@@ -7,7 +7,7 @@ import SearchResults from './pages/SearchResults';
 function App() {
     return (
         <Router>
-            <div className="min-h-screen bg-[#081c22] text-white">
+            <div className="min-h-screen">
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />

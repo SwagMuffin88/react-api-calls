@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard"
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import './MovieRow.css'
 
 interface Movie {
     id: number
@@ -20,19 +21,22 @@ interface MovieRowProps {
 
 const MovieRow: React.FC<MovieRowProps> = ({ title, movies }) => {
     return (
-        <div className="movie-row">
-            <h2 style={{ padding: '20px 0 10px 0' }}>{title}</h2>
+        <div className="movie-row mb-10">
+            <h2 className="text-2xl font-bold py-4">{title}</h2>
 
             <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
                 slidesPerView={2}
                 navigation
+                pagination={{ clickable: true }}
                 breakpoints={{
                     640: { slidesPerView: 3 },
-                    1024: { slidesPerView: 5 },
-                    1440: { slidesPerView: 6 },
+                    1024: { slidesPerView: 4 },
+                    1440: { slidesPerView: 5 },
+                    1800: {slidesPerView: 6 },
                 }}
+                className="pb-10"
             >
                 {movies.map((movie) => (
                     <SwiperSlide key={movie.id}>

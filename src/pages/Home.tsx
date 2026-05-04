@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import axios from 'axios'
 import MovieRow from '../components/MovieRow'
+import '../App.css'
 
 interface Movies {
     id: number
@@ -35,18 +36,18 @@ const Home = () => {
     }, [])
 
     return (
-        <div className="app-container p-0">
-            <main className="p-5 max-w-300 mx-auto">
-                {loading ? (
-                    <div className="loading-container">
-                        <div className="spinner"></div>
-                        <p>Laadin filme...</p>
-                    </div>
-                ) : (
+        <main className="container-center py-10">
+            {loading ? (
+                <div className="loading-container">
+                    <div className="spinner"></div>
+                    <p className="text-[#01b4e4] mt-4 font-semibold">Laadin filme...</p>
+                </div>
+            ) : (
+                <div className="fade-in">
                     <MovieRow title="Populaarsed hetkel" movies={movies}/>
-                )}
-            </main>
-        </div>
+                </div>
+            )}
+        </main>
     )
 }
 

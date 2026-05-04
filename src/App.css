@@ -1,26 +1,23 @@
 @import 'tailwindcss';
 
+:root {
+  --tmdb-dark-blue: #0d253f;
+  --tmdb-light-blue: #01b4e4;
+}
+
 body {
   margin: 0;
-  background-color: #0d253f; /* TMDB tume sinine/must */
+  background-color: var(--tmdb-dark-blue);
   color: white;
   font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
-.app-container {
-  max-width: 1200px;
+.container-center {
+  max-width: 1600px;
   margin: 0 auto;
+  padding: 0 40px;
 }
 
-/* Grid süsteem */
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
-}
-
-/* Kaardi stiil */
 .movie-card {
   background: #01b4e410;
   border-radius: 8px;
@@ -39,30 +36,12 @@ body {
   display: block;
 }
 
-.movie-info {
-  padding: 10px;
-}
-
-.movie-info h3 {
-  font-size: 1rem;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.movie-info p {
-  color: #01b4e4;
-  font-weight: bold;
-}
-
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* Kuvatakse ekraani keskel */
-  color: var(--tmdb-light-blue);
+  height: 50vh;
 }
 
 .spinner {
@@ -78,4 +57,20 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.swiper {
+  overflow: visible !important;
+  clip-path: inset(-20px 0 -20px 0);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  z-index: 10;
+}
+
+.swiper-pagination-bullets {
+  bottom: 0 !important;
+  position: relative !important;
+  margin-top: 20px;
 }

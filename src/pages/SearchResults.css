@@ -25,3 +25,10 @@
 .back-button:hover .arrow {
     transform: translateX(-4px);
 }
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 2rem;
+}
