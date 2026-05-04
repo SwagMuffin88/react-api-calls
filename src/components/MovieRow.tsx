@@ -22,7 +22,7 @@ interface MovieRowProps {
 const MovieRow: React.FC<MovieRowProps> = ({ title, movies }) => {
     return (
         <div className="movie-row mb-10">
-            <h2 className="text-2xl font-bold py-4">{title}</h2>
+            <h2 className="text-2xl font-bold py-4 pb-10">{title}</h2>
 
             <Swiper
                 modules={[Navigation, Pagination]}

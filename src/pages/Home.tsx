@@ -43,7 +43,7 @@ const Home = () => {
                     <p className="text-[#01b4e4] mt-4 font-semibold">Laadin filme...</p>
                 </div>
             ) : (
-                <div className="fade-in">
+                <div className="fade-in mt-4">
                     <MovieRow title="Populaarsed hetkel" movies={movies}/>
                 </div>
             )}
