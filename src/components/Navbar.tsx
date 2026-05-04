@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
 
-interface NavbarProps {
-    onSearch: (query: string) => void;
-}
+// interface NavbarProps {
+//     onSearch: (query: string) => void;
+// }
 
-const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
+const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('')
+    const navigate = useNavigate()
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Otsime filmi:", searchQuery)
-        onSearch(searchQuery)    };
+        if (searchQuery.trim()) {
+            navigate(`/search?q=${searchQuery}`);
+        }
+    }
 
     return (
         <nav className="navbar">
