@@ -15,7 +15,6 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Home = () => {
     const [movies, setMovies] = useState<Movies[]>([])
     const [loading, setLoading] = useState<boolean>(true)
-    const [title, setTitle] = useState("Populaarsed hetkel")
 
     const fetchPopularMovies = async () => {
         try {
@@ -44,7 +43,7 @@ const Home = () => {
                         <p>Laadin filme...</p>
                     </div>
                 ) : (
-                    <MovieRow title={title} movies={movies}/>
+                    <MovieRow title="Populaarsed hetkel" movies={movies}/>
                 )}
             </main>
         </div>

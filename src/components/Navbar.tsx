@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Navbar.css'
-
-// interface NavbarProps {
-//     onSearch: (query: string) => void;
-// }
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setSearchQuery('');
+        }
+    }, [location.pathname])
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();

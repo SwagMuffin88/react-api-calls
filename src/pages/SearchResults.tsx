@@ -14,9 +14,22 @@ const SearchResults = () => {
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
 
+    const handleBack = () => {
+        sessionStorage.clear()
+        navigate('/')
+    };
+
     useEffect(() => {
         const fetchSearch = async () => {
             if (!query) return
+
+            const cachedResults = sessionStorage.getItem(`search_${query}`)
+
+            if (cachedResults) {
+                setMovies(JSON.parse(cachedResults));
+                setLoading(false);
+                return
+            }
 
             if (!API_KEY) {
                 console.error("VIGA: API võti puudub .env failist!")
@@ -27,8 +40,12 @@ const SearchResults = () => {
                 setLoading(true)
                 const response = await axios.get(
                     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
-                );
-                setMovies(response.data.results)
+                )
+
+                const results = await response.data.results
+                setMovies(results)
+
+                sessionStorage.setItem(`search_${query}`, JSON.stringify(results))
             } catch (error) {
                 console.error("Otsingu viga:", error)
             } finally {
@@ -53,7 +70,7 @@ const SearchResults = () => {
                     {movies.length === 0 && <p>Filme ei leitud.</p>}
 
                     <button
-                        onClick={() => navigate('/')}
+                        onClick={handleBack}
                         className="back-button"
                     >
                         <span className="arrow">←</span>
