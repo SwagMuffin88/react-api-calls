@@ -1,6 +1,8 @@
 import './App.css'
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "react"
 import axios from 'axios'
+// import MovieCard from "./components/MovieCard"
+import MovieRow from './components/MovieRow'
 
 interface Movies {
   id: number
@@ -12,6 +14,7 @@ interface Movies {
 function App() {
   const [movies, setMovies] = useState<Movies[]>([])
 
+  // From YT tutorial: https://www.youtube.com/watch?v=PRUTl0ihzHg
   const apiKey =  "a2006311928939b35613c28405038c87"
   const popularMoviesUrl = "https://api.themoviedb.org/3/movie/popular"
 
@@ -27,19 +30,21 @@ function App() {
     fetchMovies()
   }, [])
 
-  return (
-    <div>
-      {movies.map((m) => (
-          <div>
-            <h1>{m.title}</h1>
+    return (
+        <div className="app-container">
+            <header>
+                <img
+                    src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+                    alt="TMDB Logo"
+                    style={{ width: '150px', marginBottom: '20px' }}
+                />
+            </header>
 
-            {m.poster_path && (
-              <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt={`${m.title} poster`} />
-            ) }
-          </div>
-      ))}
-    </div>
-  )
+            <main>
+                <MovieRow title="Populaarsed hetkel" movies={movies} />
+            </main>
+        </div>
+    );
 }
 
 export default App
