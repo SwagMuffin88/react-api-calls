@@ -32,6 +32,10 @@ function App() {
       {movies.map((m) => (
           <div>
             <h1>{m.title}</h1>
+
+            {m.poster_path && (
+              <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt={`${m.title} poster`} />
+            ) }
           </div>
       ))}
     </div>
