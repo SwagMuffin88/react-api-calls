@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import MovieDetails from './pages/MovieDetails';
+import Favorites from "./pages/Favorites.tsx";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/search" element={<SearchResults />} />
                     <Route path="/movie/:id" element={<MovieDetails />} />
+                    <Route path="favorites" element={<Favorites />}/>
                 </Routes>
             </div>
         </Router>

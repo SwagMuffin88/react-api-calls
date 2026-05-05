@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import {useNavigate, useLocation, Link} from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -24,12 +24,12 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-content">
-                <div className="logo">
+                <Link to="/" className="logo">
                     <img
                         src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
                         alt="TMDB Logo"
                     />
-                </div>
+                </Link>
 
                 <form className="search-form" onSubmit={handleSearch}>
                     <input
@@ -42,7 +42,7 @@ const Navbar = () => {
                 </form>
 
                 <div className="nav-links">
-                    <span>Minu lemmikud</span>
+                    <Link to="/favorites">Minu lemmikud</Link>
                 </div>
             </div>
         </nav>

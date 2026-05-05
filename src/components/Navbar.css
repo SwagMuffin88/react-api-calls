@@ -62,3 +62,7 @@
     font-size: 0.9rem;
     cursor: pointer;
 }
+
+.nav-links:hover {
+    color: #01b4e4;
+}
